@@ -351,9 +351,9 @@ function confirmStatusChange() {
         // Show success message
         showSuccessMessage(whatsappNotify);
         
-        // Simulate WhatsApp sending if enabled
+        // Open WhatsApp if enabled
         if (whatsappNotify) {
-            simulateWhatsAppSending(orders[orderIndex]);
+            openWhatsAppChat(orders[orderIndex]);
         }
     }
     
@@ -377,12 +377,21 @@ function showSuccessMessage(withWhatsApp) {
     }, 4000);
 }
 
-function simulateWhatsAppSending(order) {
-    // Simulate WhatsApp API call
-    console.log(`Sending WhatsApp to ${order.phone}: Your order #${order.id} status has been updated to ${getStatusText(order.status)}`);
+function openWhatsAppChat(order) {
+    // Create WhatsApp message
+    const statusText = getStatusText(order.status);
+    const message = `Bonjour ${order.customerName},\n\nVotre commande #${order.id} (${order.product}) a été mise à jour.\n\nNouveau statut: ${statusText}\n\nMerci pour votre confiance!\n\nYouzinElegancia`;
     
-    // You can integrate with actual WhatsApp API here
-    // Example: WhatsApp Business API, Twilio, etc.
+    // Clean phone number (remove spaces, dashes, etc.)
+    const cleanPhone = order.phone.replace(/\D/g, '');
+    
+    // Create WhatsApp URL
+    const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, '_blank');
+    
+    console.log(`Opening WhatsApp chat with ${order.customerName} (${order.phone})`);
 }
 
 function getStatusText(status) {
