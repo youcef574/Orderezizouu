@@ -342,6 +342,94 @@
         </div>
     </div>
 
+    <!-- Status Change Modal -->
+    <div class="status-change-modal" id="statusChangeModal">
+        <div class="status-change-content">
+            <div class="status-change-header">
+                <h3>
+                    <span class="header-icon">🔄</span>
+                    <span data-key="changeStatus">Changer le statut</span>
+                </h3>
+            </div>
+            
+            <div class="status-change-body">
+                <!-- Current Status Display -->
+                <div class="current-status-display">
+                    <div class="current-status-label" data-key="currentStatus">Statut actuel</div>
+                    <div class="current-status-value" id="currentStatusDisplay">
+                        <span id="currentStatusText">Nouveau</span>
+                    </div>
+                </div>
+                
+                <!-- Status Options -->
+                <div class="status-options">
+                    <div class="status-options-label">
+                        <span>📋</span>
+                        <span data-key="selectNewStatus">Sélectionner le nouveau statut</span>
+                    </div>
+                    <div class="status-grid">
+                        <div class="status-option new" data-status="new">
+                            <div class="status-option-text" data-key="new">Nouveau</div>
+                        </div>
+                        <div class="status-option processing" data-status="processing">
+                            <div class="status-option-text" data-key="processing">En cours</div>
+                        </div>
+                        <div class="status-option shipped" data-status="shipped">
+                            <div class="status-option-text" data-key="shipped">Expédié</div>
+                        </div>
+                        <div class="status-option completed" data-status="completed">
+                            <div class="status-option-text" data-key="completed">Terminé</div>
+                        </div>
+                        <div class="status-option cancelled" data-status="cancelled">
+                            <div class="status-option-text" data-key="cancelled">Annulé</div>
+                        </div>
+                        <div class="status-option return" data-status="return">
+                            <div class="status-option-text" data-key="statusReturn">Retour</div>
+                        </div>
+                        <div class="status-option exchange" data-status="exchange">
+                            <div class="status-option-text" data-key="statusExchange">Échange</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- WhatsApp Notification Option -->
+                <div class="whatsapp-notification">
+                    <div class="whatsapp-checkbox-container">
+                        <div class="whatsapp-checkbox">
+                            <input type="checkbox" id="whatsappNotify" checked>
+                            <div class="checkbox-custom"></div>
+                        </div>
+                        <label for="whatsappNotify" class="whatsapp-label">
+                            <span class="whatsapp-icon">📱</span>
+                            <span data-key="notifyCustomer">Notifier le client via WhatsApp</span>
+                        </label>
+                    </div>
+                    <div class="whatsapp-description" data-key="whatsappDescription">
+                        Le client recevra automatiquement un message WhatsApp l'informant du changement de statut de sa commande.
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="status-change-actions">
+                    <button class="btn btn-cancel" id="cancelStatusChange">
+                        <span>✕</span>
+                        <span data-key="cancel">Annuler</span>
+                    </button>
+                    <button class="btn btn-confirm" id="confirmStatusChange" disabled>
+                        <span>✓</span>
+                        <span data-key="confirm">Confirmer</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Notification -->
+    <div class="status-change-success" id="statusChangeSuccess">
+        <span class="success-icon">✅</span>
+        <span id="successMessage">Statut mis à jour avec succès!</span>
+    </div>
+
     <script src="script.js"></script>
 </body>
                             </html>
