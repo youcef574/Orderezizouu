@@ -1,1386 +1,746 @@
-// Language Management
-class LanguageManager {
-    constructor() {
-        this.currentLang = localStorage.getItem('language') || 'fr';
-        this.translations = {
-            fr: {
-                // Header
-                dashboard: 'Tableau de bord',
-                settings: 'Paramètres',
-                logout: 'Déconnexion',
-                
-                // Page Title
-                pageTitle: 'Gestion des Commandes',
-                
-                // Stats
-                newOrders: 'Nouvelles',
-                processing: 'En cours',
-                shipped: 'Expédiées',
-                completed: 'Terminées',
-                
-                // Toolbar
-                searchPlaceholder: 'Rechercher par nom, téléphone ou numéro de commande...',
-                allStatuses: 'Tous les statuts',
-                new: 'Nouveau',
-                cancelled: 'Annulé',
-                to: 'à',
-                export: 'Exporter',
-                addTestOrder: 'Commande test',
-                
-                // Table Headers
-                id: 'id',
-                nom: 'Nom',
-                phone: 'Téléphone',
-                wilaya: 'Wilaya',
-                produit: 'produit',
-                variants: 'Variantes',
-                quantity: 'Qté',
-                total: 'Total',
-                date: 'Date',
-                statut: 'statut',
-                action: 'action',
-                
-                // Modal
-                invoiceTitle: 'Facture de clients',
-                invoiceTitle: 'Facture',
-                produit: 'Produit',
-                variantes: 'Variantes',
-                quantite: 'Quantité',
-                nom: 'Nom',
-                telephone: 'Téléphone',
-                wilaya: 'Wilaya',
-                commune: 'Commune',
-                prixProduit: 'Prix produit',
-                fraisLivraison: 'Frais de livraison',
-                total: 'Total',
-                callClient: '📞 Appeler le client',
-                memos: '📝 Mémos / Notes',
-                noAnswer: '❌ N\'a pas répondu',
-                called: '☎ Appelé avec succès',
-                callLater: '⏳ Rappeler plus tard',
-                
-                // Actions
-                details: 'Détails',
-                
-                // Messages
-                orderCopied: 'Informations de la commande copiées !',
-                noteAdded: 'Note ajoutée avec succès !',
-                statusUpdated: 'Statut mis à jour !',
-                testOrderAdded: 'Commande test ajoutée !',
-                orderDeleted: 'Commande supprimée avec succès !',
-                confirmDelete: 'Êtes-vous sûr de vouloir supprimer cette commande ?',
-                whatsappSent: 'Message WhatsApp envoyé avec succès !',
-                invalidPhone: 'Numéro de téléphone invalide pour WhatsApp',
-                fillAllFields: 'Veuillez remplir tous les champs obligatoires',
-                orderAdded: 'Commande ajoutée avec succès !',
-                returnRequested: 'Demande de retour enregistrée',
-                exchangeRequested: 'Demande d\'échange enregistrée',
-                
-                // Status
-                statusNew: 'Nouveau',
-                statusProcessing: 'En cours',
-                statusShipped: 'Expédié',
-                statusCompleted: 'Terminé',
-                statusCancelled: 'Annulé',
-                statusReturn: 'Retour',
-                statusExchange: 'Échange',
-                
-                // Buttons
-                print: 'Imprimer',
-                save: 'Sauvegarder',
-                close: 'Fermer',
-                delete: 'Supprimer',
-                confirm: 'Confirmer',
-                cancel: 'Annuler',
-                addManually: 'Ajouter manuellement',
-                saveOrder: 'Enregistrer',
-                cancelOrder: 'Annuler',
-                
-                // Form labels
-                customerName: 'Nom du client',
-                phone: 'Téléphone',
-                wilaya: 'Wilaya',
-                city: 'Commune',
-                product: 'Produit',
-                variants: 'Variantes',
-                quantity: 'Quantité',
-                totalPrice: 'Prix total (€)',
-                customerNotes: 'Notes du client',
-                addNewOrder: 'Ajouter une nouvelle commande',
-                
-                // Confirmation dialog
-                confirmDeleteTitle: 'Confirmer la suppression',
-                confirmDeleteMessage: 'Cette action est irréversible.',
-                
-                // WhatsApp messages
-                whatsappOrderUpdate: 'Mise à jour de votre commande',
-                whatsappGreeting: 'Bonjour',
-                whatsappOrderNumber: 'Commande #',
-                whatsappProduct: 'Produit:',
-                whatsappQuantity: 'Quantité:',
-                whatsappTotal: 'Total:',
-                whatsappThanks: 'Merci de votre confiance !',
-                whatsappSignature: 'YouzinElegancia'
-            },
-            en: {
-                // Header
-                dashboard: 'Dashboard',
-                settings: 'Settings',
-                logout: 'Logout',
-                
-                // Page Title
-                pageTitle: 'Orders Management',
-                
-                // Stats
-                newOrders: 'New',
-                processing: 'Processing',
-                shipped: 'Shipped',
-                completed: 'Completed',
-                
-                // Toolbar
-                searchPlaceholder: 'Search by name, phone or order number...',
-                allStatuses: 'All statuses',
-                new: 'New',
-                cancelled: 'Cancelled',
-                to: 'to',
-                export: 'Export',
-                addTestOrder: 'Test order',
-                
-                // Table Headers
-                id: 'id',
-                nom: 'Name',
-                phone: 'Phone',
-                wilaya: 'Wilaya',
-                produit: 'product',
-                variants: 'Variants',
-                quantity: 'Qty',
-                total: 'Total',
-                date: 'Date',
-                statut: 'status',
-                action: 'action',
-                
-                // Modal
-                invoiceTitle: 'Invoice',
-                produit: 'Product',
-              //  couleur: 'Color',
-                variantes: 'Variants',   
-                quantite: 'Quantity',
-                nom: 'Name',
-                telephone: 'Phone',
-                wilaya: 'Wilaya',
-                commune: 'City',
-                prixProduit: 'Product price',
-                fraisLivraison: 'Delivery fees',
-                total: 'Total',
-                callClient: '📞 Call client',
-                memos: '📝 Memos / Notes',
-                noAnswer: '❌ No answer',
-                called: '☎ Called successfully',
-                callLater: '⏳ Call back later',
-                
-                // Actions
-                details: 'Details',
-                
-                // Messages
-                orderCopied: 'Order information copied!',
-                noteAdded: 'Note added successfully!',
-                statusUpdated: 'Status updated!',
-                testOrderAdded: 'Test order added!',
-                orderDeleted: 'Order deleted successfully!',
-                confirmDelete: 'Are you sure you want to delete this order?',
-                whatsappSent: 'WhatsApp message sent successfully!',
-                invalidPhone: 'Invalid phone number for WhatsApp',
-                fillAllFields: 'Please fill all required fields',
-                orderAdded: 'Order added successfully!',
-                returnRequested: 'Return request recorded',
-                exchangeRequested: 'Exchange request recorded',
-                
-                // Status
-                statusNew: 'New',
-                statusProcessing: 'Processing',
-                statusShipped: 'Shipped',
-                statusCompleted: 'Completed',
-                statusCancelled: 'Cancelled',
-                statusReturn: 'Return',
-                statusExchange: 'Exchange',
-                
-                // Buttons
-                print: 'Print',
-                save: 'Save',
-                close: 'Close',
-                delete: 'Delete',
-                confirm: 'Confirm',
-                cancel: 'Cancel',
-                addManually: 'Add manually',
-                saveOrder: 'Save',
-                cancelOrder: 'Cancel',
-                
-                // Form labels
-                customerName: 'Customer name',
-                phone: 'Phone',
-                wilaya: 'Wilaya',
-                city: 'City',
-                product: 'Product',
-                variants: 'Variants',
-                quantity: 'Quantity',
-                totalPrice: 'Total price (€)',
-                customerNotes: 'Customer notes',
-                addNewOrder: 'Add new order',
-                
-                // Confirmation dialog
-                confirmDeleteTitle: 'Confirm deletion',
-                confirmDeleteMessage: 'This action is irreversible.',
-                
-                // WhatsApp messages
-                whatsappOrderUpdate: 'Your order update',
-                whatsappGreeting: 'Hello',
-                whatsappOrderNumber: 'Order #',
-                whatsappProduct: 'Product:',
-                whatsappQuantity: 'Quantity:',
-                whatsappTotal: 'Total:',
-                whatsappThanks: 'Thank you for your trust!',
-                whatsappSignature: 'YouzinElegancia'
-            }
-        };
-        
-        this.init();
+// Global variables
+let orders = [];
+let filteredOrders = [];
+let currentLanguage = 'fr';
+let currentOrderId = null;
+let selectedNewStatus = null;
+
+// Language translations
+const translations = {
+    fr: {
+        // Existing translations
+        dashboard: "Tableau de bord",
+        settings: "Paramètres",
+        logout: "Déconnexion",
+        pageTitle: "Gestion des Commandes",
+        newOrders: "Nouvelles",
+        processing: "En cours",
+        shipped: "Expédiées",
+        completed: "Terminées",
+        searchPlaceholder: "Rechercher par nom, téléphone, wilaya ou produit...",
+        allStatuses: "Tous les statuts",
+        new: "Nouveau",
+        cancelled: "Annulé",
+        statusReturn: "Retour",
+        statusExchange: "Échange",
+        to: "à",
+        export: "Exporter",
+        addTestOrder: "Commande test",
+        addManually: "Ajouter manuellement",
+        addNewOrder: "Ajouter une nouvelle commande",
+        customerName: "Nom du client",
+        phone: "Téléphone",
+        wilaya: "Wilaya",
+        city: "Commune",
+        product: "Produit",
+        variants: "Variantes",
+        quantity: "Quantité",
+        totalPrice: "Prix total (€)",
+        customerNotes: "Notes du client",
+        cancelOrder: "Annuler",
+        saveOrder: "Enregistrer",
+        id: "ID",
+        nom: "Nom",
+        produit: "Produit",
+        total: "Total",
+        date: "Date",
+        statut: "Statut",
+        action: "Action",
+        invoiceTitle: "Confirmation de Commande",
+        print: "Imprimer",
+        save: "Sauvegarder",
+        close: "Fermer",
+        quantite: "Quantité",
+        telephone: "Téléphone",
+        commune: "Commune",
+        prixProduit: "Prix produit",
+        fraisLivraison: "Frais de livraison",
+        callClient: "Appeler le client",
+        memos: "Mémos / Notes",
+        delete: "Supprimer",
+        confirmDeleteTitle: "Confirmer la suppression",
+        confirmDelete: "Êtes-vous sûr de vouloir supprimer cette commande ?",
+        confirmDeleteMessage: "Cette action est irréversible.",
+        cancel: "Annuler",
+        confirm: "Confirmer",
+        // New translations for status change modal
+        changeStatus: "Changer le statut",
+        currentStatus: "Statut actuel",
+        selectNewStatus: "Sélectionner le nouveau statut",
+        notifyCustomer: "Notifier le client via WhatsApp",
+        whatsappDescription: "Le client recevra automatiquement un message WhatsApp l'informant du changement de statut de sa commande.",
+        statusUpdated: "Statut mis à jour avec succès!",
+        statusUpdatedWithWhatsApp: "Statut mis à jour et notification WhatsApp envoyée!",
+        statusUpdatedWithoutWhatsApp: "Statut mis à jour sans notification."
+    },
+    en: {
+        // Existing translations
+        dashboard: "Dashboard",
+        settings: "Settings",
+        logout: "Logout",
+        pageTitle: "Order Management",
+        newOrders: "New",
+        processing: "Processing",
+        shipped: "Shipped",
+        completed: "Completed",
+        searchPlaceholder: "Search by name, phone, wilaya or product...",
+        allStatuses: "All statuses",
+        new: "New",
+        cancelled: "Cancelled",
+        statusReturn: "Return",
+        statusExchange: "Exchange",
+        to: "to",
+        export: "Export",
+        addTestOrder: "Test order",
+        addManually: "Add manually",
+        addNewOrder: "Add new order",
+        customerName: "Customer name",
+        phone: "Phone",
+        wilaya: "Wilaya",
+        city: "City",
+        product: "Product",
+        variants: "Variants",
+        quantity: "Quantity",
+        totalPrice: "Total price (€)",
+        customerNotes: "Customer notes",
+        cancelOrder: "Cancel",
+        saveOrder: "Save",
+        id: "ID",
+        nom: "Name",
+        produit: "Product",
+        total: "Total",
+        date: "Date",
+        statut: "Status",
+        action: "Action",
+        invoiceTitle: "Order Confirmation",
+        print: "Print",
+        save: "Save",
+        close: "Close",
+        quantite: "Quantity",
+        telephone: "Phone",
+        commune: "City",
+        prixProduit: "Product price",
+        fraisLivraison: "Delivery fees",
+        callClient: "Call client",
+        memos: "Memos / Notes",
+        delete: "Delete",
+        confirmDeleteTitle: "Confirm deletion",
+        confirmDelete: "Are you sure you want to delete this order?",
+        confirmDeleteMessage: "This action is irreversible.",
+        cancel: "Cancel",
+        confirm: "Confirm",
+        // New translations for status change modal
+        changeStatus: "Change Status",
+        currentStatus: "Current Status",
+        selectNewStatus: "Select new status",
+        notifyCustomer: "Notify customer via WhatsApp",
+        whatsappDescription: "The customer will automatically receive a WhatsApp message informing them of their order status change.",
+        statusUpdated: "Status updated successfully!",
+        statusUpdatedWithWhatsApp: "Status updated and WhatsApp notification sent!",
+        statusUpdatedWithoutWhatsApp: "Status updated without notification."
     }
+};
+
+// Sample orders data
+const sampleOrders = [
+    {
+        id: 1,
+        customerName: "Ahmed Benali",
+        phone: "+213 555 123 456",
+        wilaya: "Alger",
+        city: "Bab Ezzouar",
+        product: "Montre Élégante",
+        variants: "Noir, 42mm",
+        quantity: 1,
+        total: 89.99,
+        date: "2024-01-15",
+        status: "new",
+        notes: "Livraison urgente demandée",
+        unread: true
+    },
+    {
+        id: 2,
+        customerName: "Fatima Khelifi",
+        phone: "+213 666 789 012",
+        wilaya: "Oran",
+        city: "Es Senia",
+        product: "Bracelet Premium",
+        variants: "Or rose, Taille M",
+        quantity: 2,
+        total: 156.50,
+        date: "2024-01-14",
+        status: "processing",
+        notes: "",
+        unread: false
+    },
+    {
+        id: 3,
+        customerName: "Mohamed Saidi",
+        phone: "+213 777 345 678",
+        wilaya: "Constantine",
+        city: "Ali Mendjeli",
+        product: "Collier Diamant",
+        variants: "Argent, 45cm",
+        quantity: 1,
+        total: 234.00,
+        date: "2024-01-13",
+        status: "shipped",
+        notes: "Cadeau d'anniversaire",
+        unread: false
+    },
+    {
+        id: 4,
+        customerName: "Amina Boudjema",
+        phone: "+213 888 901 234",
+        wilaya: "Annaba",
+        city: "El Bouni",
+        product: "Boucles d'oreilles",
+        variants: "Perles, Blanc",
+        quantity: 1,
+        total: 67.25,
+        date: "2024-01-12",
+        status: "completed",
+        notes: "",
+        unread: false
+    }
+];
+
+// Initialize the application
+document.addEventListener('DOMContentLoaded', function() {
+    orders = [...sampleOrders];
+    filteredOrders = [...orders];
     
-    init() {
-        this.updateLanguageDisplay();
-        this.translatePage();
-        
-        // Language toggle event
-        document.getElementById('langToggle').addEventListener('click', () => {
-            this.toggleLanguage();
+    initializeEventListeners();
+    updateOrdersTable();
+    updateStats();
+    updateLanguage();
+});
+
+// Event listeners
+function initializeEventListeners() {
+    // Language toggle
+    document.getElementById('langToggle').addEventListener('click', toggleLanguage);
+    
+    // Menu toggle
+    document.getElementById('menuToggle').addEventListener('click', toggleMenu);
+    
+    // Search functionality
+    document.getElementById('searchInput').addEventListener('input', handleSearch);
+    
+    // Filter functionality
+    document.getElementById('statusFilter').addEventListener('change', handleFilter);
+    document.getElementById('dateFrom').addEventListener('change', handleFilter);
+    document.getElementById('dateTo').addEventListener('change', handleFilter);
+    
+    // Button actions
+    document.getElementById('addTestOrderBtn').addEventListener('click', addTestOrder);
+    document.getElementById('addManualOrderBtn').addEventListener('click', toggleManualOrderForm);
+    document.getElementById('cancelManualOrder').addEventListener('click', hideManualOrderForm);
+    document.getElementById('saveManualOrder').addEventListener('click', saveManualOrder);
+    document.getElementById('exportBtn').addEventListener('click', exportOrders);
+    
+    // Modal actions
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('modalOverlay').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+    
+    // Status change modal actions
+    document.getElementById('cancelStatusChange').addEventListener('click', closeStatusChangeModal);
+    document.getElementById('confirmStatusChange').addEventListener('click', confirmStatusChange);
+    
+    // Status option selection
+    document.querySelectorAll('.status-option').forEach(option => {
+        option.addEventListener('click', function() {
+            selectNewStatus(this.dataset.status);
         });
-    }
+    });
     
-    toggleLanguage() {
-        this.currentLang = this.currentLang === 'fr' ? 'en' : 'fr';
-        localStorage.setItem('language', this.currentLang);
-        this.updateLanguageDisplay();
-        this.translatePage();
-        
-        // Update table headers
-        this.updateTableHeaders();
-        
-        // Update modal if open
-        if (window.ordersManager && window.ordersManager.currentOrder) {
-            window.ordersManager.populateModal(window.ordersManager.currentOrder);
-        }
-    }
+    // Print and save actions
+    document.getElementById('printBtn').addEventListener('click', printInvoice);
+    document.getElementById('saveBtn').addEventListener('click', saveInvoice);
     
-    updateLanguageDisplay() {
-        const langText = document.getElementById('langText');
-        langText.textContent = this.currentLang === 'fr' ? 'Français' : 'English';
-    }
+    // Delete order
+    document.getElementById('deleteOrderBtn').addEventListener('click', showDeleteConfirmation);
+    document.getElementById('cancelDelete').addEventListener('click', hideDeleteConfirmation);
+    document.getElementById('confirmDelete').addEventListener('click', deleteOrder);
     
-    translatePage() {
-        const elements = document.querySelectorAll('[data-key]');
-        elements.forEach(element => {
-            const key = element.getAttribute('data-key');
-            if (this.translations[this.currentLang][key]) {
-                element.textContent = this.translations[this.currentLang][key];
-            }
+    // Call button
+    document.getElementById('callBtn').addEventListener('click', callCustomer);
+    
+    // Notes functionality
+    document.getElementById('addNotesBtn').addEventListener('click', toggleNotes);
+    document.querySelectorAll('.quick-note-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            addQuickNote(this.dataset.note);
         });
-        
-        // Translate placeholders
-        const placeholderElements = document.querySelectorAll('[data-key-placeholder]');
-        placeholderElements.forEach(element => {
-            const key = element.getAttribute('data-key-placeholder');
-            if (this.translations[this.currentLang][key]) {
-                element.placeholder = this.translations[this.currentLang][key];
-            }
-        });
-    }
+    });
     
-    updateTableHeaders() {
-        const headers = document.querySelectorAll('.orders-table th');
-        const headerKeys = ['id', 'nom', 'phone', 'wilaya', 'produit', 'variants', 'quantity', 'total', 'date', 'statut', 'action'];
-        
-        headers.forEach((header, index) => {
-            if (headerKeys[index] && this.translations[this.currentLang][headerKeys[index]]) {
-                header.textContent = this.translations[this.currentLang][headerKeys[index]];
-            }
-        });
-    }
-    
-    t(key) {
-        return this.translations[this.currentLang][key] || key;
-    }
+    // Close modal when clicking outside
+    document.getElementById('statusChangeModal').addEventListener('click', function(e) {
+        if (e.target === this) closeStatusChangeModal();
+    });
 }
 
-// Orders Management System
-class OrdersManager {
-    constructor() {
-        this.orders = this.loadOrders();
-        this.filteredOrders = [...this.orders];
-        this.currentOrder = null;
-        
-        this.init();
-    }
+// Status change modal functions
+function openStatusChangeModal(orderId, currentStatus) {
+    currentOrderId = orderId;
+    selectedNewStatus = null;
     
-    init() {
-        this.renderOrders();
-        this.updateStats();
-        this.bindEvents();
-        this.initModal();
-    }
+    // Update current status display
+    const currentStatusDisplay = document.getElementById('currentStatusDisplay');
+    const currentStatusText = document.getElementById('currentStatusText');
     
-    loadOrders() {
-        // Load from localStorage or return sample data
-        const saved = localStorage.getItem('orders');
-        if (saved) {
-            return JSON.parse(saved);
-        }
-        
-        return this.generateSampleOrders();
-    }
+    currentStatusDisplay.className = `current-status-value ${currentStatus}`;
+    currentStatusText.textContent = getStatusText(currentStatus);
     
-    saveOrders() {
-        localStorage.setItem('orders', JSON.stringify(this.orders));
-    }
-    
-    generateSampleOrders() {
-        const sampleOrders = [
-            {
-                id: '1',
-                customerName: 'Marie',
-                phone: '+33 6 12 34 56 78',
-                wilaya: 'Paris',
-                city: 'Paris',
-                product: 'Collier Élégance',
-                variants: 'Or rose, 45cm',
-                quantity: 1,
-                total: 89.99,
-                customerNotes: 'Livraison rapide s\'il vous plaît',
-                sellerNotes: '',
-                date: new Date(Date.now() - 86400000).toISOString(),
-                status: 'new',
-                isRead: false
-            },
-            {
-                id: '2',
-                customerName: 'Jean',
-                phone: '+33 6 98 76 54 32',
-                wilaya: 'Rhône',
-                city: 'Lyon',
-                product: 'Bague Diamant',
-                variants: 'Argent, Taille 56',
-                quantity: 1,
-                total: 159.99,
-                customerNotes: '',
-                sellerNotes: '☎ Appelé avec succès',
-                date: new Date(Date.now() - 172800000).toISOString(),
-                status: 'processing',
-                isRead: true
-            },
-            {
-                id: '3',
-                customerName: 'Sophie',
-                phone: '+33 6 11 22 33 44',
-                wilaya: 'Bouches-du-Rhône',
-                city: 'Marseille',
-                product: 'Bracelet Charme',
-                variants: 'Or blanc, 18cm',
-                quantity: 2,
-                total: 199.98,
-                customerNotes: 'Cadeau d\'anniversaire',
-                sellerNotes: '',
-                date: new Date(Date.now() - 259200000).toISOString(),
-                status: 'shipped',
-                isRead: true
-            }
-        ];
-        
-        return sampleOrders;
-    }
-    
-    bindEvents() {
-        // Search functionality
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            this.filterOrders();
-        });
-        
-        // Status filter
-        document.getElementById('statusFilter').addEventListener('change', () => {
-            this.filterOrders();
-        });
-        
-        // Date filters
-        document.getElementById('dateFrom').addEventListener('change', () => {
-            this.filterOrders();
-        });
-        
-        document.getElementById('dateTo').addEventListener('change', () => {
-            this.filterOrders();
-        });
-        
-        // Add test order
-        document.getElementById('addTestOrderBtn').addEventListener('click', () => {
-            this.addTestOrder();
-        });
-        
-        // Export functionality
-        document.getElementById('exportBtn').addEventListener('click', () => {
-            this.exportOrders();
-        });
-        
-        // User menu toggle
-        document.getElementById('menuToggle').addEventListener('click', (e) => {
-            e.stopPropagation();
-            const dropdown = document.getElementById('dropdownMenu');
-            dropdown.classList.toggle('show');
-        });
-        
-        // Close dropdown when clicking outside
-        document.addEventListener('click', () => {
-            const dropdown = document.getElementById('dropdownMenu');
-            dropdown.classList.remove('show');
-        });
-    }
-    
-    filterOrders() {
-        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-        const statusFilter = document.getElementById('statusFilter').value;
-        const dateFrom = document.getElementById('dateFrom').value;
-        const dateTo = document.getElementById('dateTo').value;
-        
-        this.filteredOrders = this.orders.filter(order => {
-            // Search filter
-            const matchesSearch = !searchTerm || 
-                order.customerName.toLowerCase().includes(searchTerm) ||
-                order.phone.includes(searchTerm) ||
-                order.id.toLowerCase().includes(searchTerm) ||
-                order.product.toLowerCase().includes(searchTerm) ||
-                order.wilaya.toLowerCase().includes(searchTerm) ||
-                order.city.toLowerCase().includes(searchTerm);
-            
-            // Status filter
-            const matchesStatus = !statusFilter || order.status === statusFilter;
-            
-            // Date filter
-            const orderDate = new Date(order.date).toISOString().split('T')[0];
-            const matchesDateFrom = !dateFrom || orderDate >= dateFrom;
-            const matchesDateTo = !dateTo || orderDate <= dateTo;
-            
-            return matchesSearch && matchesStatus && matchesDateFrom && matchesDateTo;
-        });
-        
-        this.renderOrders();
-        
-        // Add search result count
-        this.updateSearchResults();
-    }
-    
-    updateSearchResults() {
-        const searchInput = document.getElementById('searchInput');
-        const resultCount = this.filteredOrders.length;
-        const totalCount = this.orders.length;
-        
-        // Update placeholder to show results
-        if (searchInput.value.trim()) {
-            searchInput.setAttribute('data-results', `${resultCount} résultat${resultCount > 1 ? 's' : ''}`);
+    // Reset status options
+    document.querySelectorAll('.status-option').forEach(option => {
+        option.classList.remove('selected');
+        if (option.dataset.status === currentStatus) {
+            option.style.display = 'none';
         } else {
-            searchInput.removeAttribute('data-results');
+            option.style.display = 'block';
         }
-    }
+    });
     
-    renderOrders() {
-        const tbody = document.getElementById('ordersTableBody');
-        tbody.innerHTML = '';
-        
-        if (this.filteredOrders.length === 0) {
-            tbody.innerHTML = `
-                <tr>
-                    <td colspan="5" style="text-align: center; padding: 2rem; color: var(--text-gray);">
-                        ${window.langManager.t('noOrdersFound') || 'Aucune commande trouvée'}
-                    </td>
-                </tr>
-            `;
-            return;
-        }
-        
-        this.filteredOrders.forEach((order, index) => {
-            const row = document.createElement('tr');
-            if (!order.isRead) {
-                row.classList.add('unread');
-            }
-            
-            // Extract first name only
-            const firstName = order.customerName.split(' ')[0];
-            
-            row.innerHTML = `
-                <td class="col-id"><strong>${index + 1}</strong></td>
-                <td class="col-nom truncate" title="${order.customerName}">${firstName}</td>
-                <td class="col-phone">${order.phone}</td>
-                <td class="col-wilaya truncate" title="${order.wilaya}, ${order.city}">${order.wilaya}</td>
-                <td class="col-produit truncate" title="${order.product}">${order.product}</td>
-                <td class="col-variants truncate" title="${order.variants}">${order.variants}</td>
-                <td class="col-quantity">${order.quantity}</td>
-                <td class="col-total">€${order.total.toFixed(2)}</td>
-                <td class="col-date">${this.formatDate(order.date)}</td>
-                <td class="col-statut">${this.renderStatusDropdown(order.id, order.status)}</td>
-                <td class="col-action">
-                    <button class="action-btn" onclick="ordersManager.openOrderModal('${order.id}')">
-                        <i class="fas fa-eye"></i>
-                    </button>
-                </td>
-            `;
-            
-            // Add click event to row
-            row.addEventListener('click', (e) => {
-                if (!e.target.closest('.action-btn') && !e.target.closest('.status-dropdown')) {
-                    this.openOrderModal(order.id);
-                }
-            });
-            
-            tbody.appendChild(row);
-        });
-        
-        // Bind status dropdown events
-        this.bindStatusDropdowns();
-    }
+    // Reset confirm button
+    document.getElementById('confirmStatusChange').disabled = true;
     
-    renderStatusDropdown(orderId, currentStatus) {
-        const statusOptions = {
-            new: { icon: 'fas fa-plus-circle', text: window.langManager.t('statusNew'), color: 'new' },
-            processing: { icon: 'fas fa-clock', text: window.langManager.t('statusProcessing'), color: 'processing' },
-            shipped: { icon: 'fas fa-truck', text: window.langManager.t('statusShipped'), color: 'shipped' },
-            completed: { icon: 'fas fa-check-circle', text: window.langManager.t('statusCompleted'), color: 'completed' },
-            cancelled: { icon: 'fas fa-times-circle', text: window.langManager.t('statusCancelled'), color: 'cancelled' },
-            return: { icon: 'fas fa-undo', text: window.langManager.t('statusReturn'), color: 'return' },
-            exchange: { icon: 'fas fa-exchange-alt', text: window.langManager.t('statusExchange'), color: 'exchange' }
-        };
-        
-        const currentOption = statusOptions[currentStatus];
-        
-        return `
-            <div class="status-dropdown" data-order-id="${orderId}">
-                <select class="status-select ${currentStatus}" onchange="ordersManager.updateOrderStatusFromTable('${orderId}', this.value)">
-                    ${Object.entries(statusOptions).map(([status, option]) => 
-                        `<option value="${status}" ${status === currentStatus ? 'selected' : ''}>${option.text}</option>`
-                    ).join('')}
-                </select>
-                <div class="status-display ${currentStatus}">
-                    <i class="${currentOption.icon}"></i>
-                    <span>${currentOption.text}</span>
-                </div>
-            </div>
-        `;
-    }
+    // Show modal
+    document.getElementById('statusChangeModal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeStatusChangeModal() {
+    document.getElementById('statusChangeModal').classList.remove('show');
+    document.body.style.overflow = '';
+    currentOrderId = null;
+    selectedNewStatus = null;
+}
+
+function selectNewStatus(status) {
+    selectedNewStatus = status;
     
-    bindStatusDropdowns() {
-        // Add click handlers for status dropdowns
-        document.querySelectorAll('.status-dropdown').forEach(dropdown => {
-            const select = dropdown.querySelector('.status-select');
-            const display = dropdown.querySelector('.status-display');
-            
-            display.addEventListener('click', (e) => {
-                e.stopPropagation();
-                dropdown.classList.toggle('open');
-                
-                // Close other dropdowns
-                document.querySelectorAll('.status-dropdown').forEach(other => {
-                    if (other !== dropdown) {
-                        other.classList.remove('open');
-                    }
-                });
-            });
-        });
-        
-        // Close dropdowns when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.status-dropdown')) {
-                document.querySelectorAll('.status-dropdown').forEach(dropdown => {
-                    dropdown.classList.remove('open');
-                });
-            }
-        });
-    }
+    // Update visual selection
+    document.querySelectorAll('.status-option').forEach(option => {
+        option.classList.remove('selected');
+    });
     
-    updateOrderStatusFromTable(orderId, newStatus) {
-        const order = this.orders.find(o => o.id === orderId);
-        if (order && order.status !== newStatus) {
-            // Handle return/exchange status
-            if (newStatus === 'return' || newStatus === 'exchange') {
-                const typeText = newStatus === 'return' ? window.langManager.t('statusReturn') : window.langManager.t('statusExchange');
-                const currentNotes = order.sellerNotes || '';
-                const newNote = `🔄 ${typeText} ${window.langManager.t('returnRequested')}`;
-                order.sellerNotes = currentNotes ? `${currentNotes}\n${newNote}` : newNote;
-                this.showNotification(window.langManager.t(newStatus + 'Requested'));
-            }
-            
-            order.status = newStatus;
-            this.saveOrders();
-            this.renderOrders();
-            this.updateStats();
-            this.showNotification(window.langManager.t('statusUpdated'));
-            
-            // Send WhatsApp message
-            this.sendWhatsAppStatusUpdate(order, newStatus);
-        }
-    }
+    document.querySelector(`[data-status="${status}"]`).classList.add('selected');
     
-    renderStatusBadge(status) {
-        const statusMap = {
-            new: { icon: 'fas fa-plus-circle', text: window.langManager.t('statusNew') },
-            processing: { icon: 'fas fa-clock', text: window.langManager.t('statusProcessing') },
-            shipped: { icon: 'fas fa-truck', text: window.langManager.t('statusShipped') },
-            completed: { icon: 'fas fa-check-circle', text: window.langManager.t('statusCompleted') },
-            cancelled: { icon: 'fas fa-times-circle', text: window.langManager.t('statusCancelled') },
-            return: { icon: 'fas fa-undo', text: window.langManager.t('statusReturn') },
-            exchange: { icon: 'fas fa-exchange-alt', text: window.langManager.t('statusExchange') }
-        };
-        
-        const statusInfo = statusMap[status] || statusMap.new;
-        
-        return `
-            <span class="status-badge ${status}">
-                <i class="${statusInfo.icon}"></i>
-                ${statusInfo.text}
-            </span>
-        `;
-    }
+    // Enable confirm button
+    document.getElementById('confirmStatusChange').disabled = false;
+}
+
+function confirmStatusChange() {
+    if (!currentOrderId || !selectedNewStatus) return;
     
-    formatDate(dateString) {
-        const date = new Date(dateString);
-        return date.toLocaleDateString(window.langManager.currentLang === 'fr' ? 'fr-FR' : 'en-US');
-    }
+    const whatsappNotify = document.getElementById('whatsappNotify').checked;
     
-    updateStats() {
-        const stats = {
-            new: this.orders.filter(o => o.status === 'new').length,
-            processing: this.orders.filter(o => o.status === 'processing').length,
-            shipped: this.orders.filter(o => o.status === 'shipped').length,
-            completed: this.orders.filter(o => o.status === 'completed').length
-        };
+    // Find and update the order
+    const orderIndex = orders.findIndex(order => order.id === currentOrderId);
+    if (orderIndex !== -1) {
+        orders[orderIndex].status = selectedNewStatus;
+        orders[orderIndex].unread = false;
         
-        document.getElementById('newOrdersCount').textContent = stats.new;
-        document.getElementById('processingOrdersCount').textContent = stats.processing;
-        document.getElementById('shippedOrdersCount').textContent = stats.shipped;
-        document.getElementById('completedOrdersCount').textContent = stats.completed;
-    }
-    
-    addTestOrder() {
-        const testOrder = {
-            id: String(this.orders.length + 1),
-            customerName: 'Client Test Nom',
-            phone: '+33 6 00 00 00 00',
-            wilaya: 'Alger',
-            city: 'Alger Centre',
-            product: 'Produit Test',
-            variants: 'Variante Test',
-            quantity: 1,
-            total: 99.99,
-            customerNotes: 'Commande de test',
-            sellerNotes: '',
-            date: new Date().toISOString(),
-            status: 'new',
-            isRead: false
-        };
-        
-        this.orders.unshift(testOrder);
-        this.filteredOrders = [...this.orders];
-        this.saveOrders();
-        this.renderOrders();
-        this.updateStats();
-        
-        this.showNotification(window.langManager.t('testOrderAdded'));
-    }
-    
-    toggleManualOrderForm() {
-        const form = document.getElementById('manualOrderForm');
-        form.classList.toggle('show');
-        
-        if (!form.classList.contains('show')) {
-            this.clearManualOrderForm();
-        }
-    }
-    
-    clearManualOrderForm() {
-        document.getElementById('manualCustomerName').value = '';
-        document.getElementById('manualPhone').value = '';
-        document.getElementById('manualWilaya').value = '';
-        document.getElementById('manualCity').value = '';
-        document.getElementById('manualProduct').value = '';
-        document.getElementById('manualVariants').value = '';
-        document.getElementById('manualQuantity').value = '1';
-        document.getElementById('manualTotal').value = '';
-        document.getElementById('manualNotes').value = '';
-    }
-    
-    saveManualOrder() {
-        const customerName = document.getElementById('manualCustomerName').value.trim();
-        const phone = document.getElementById('manualPhone').value.trim();
-        const wilaya = document.getElementById('manualWilaya').value.trim();
-        const city = document.getElementById('manualCity').value.trim();
-        const product = document.getElementById('manualProduct').value.trim();
-        const variants = document.getElementById('manualVariants').value.trim();
-        const quantity = parseInt(document.getElementById('manualQuantity').value);
-        const total = parseFloat(document.getElementById('manualTotal').value);
-        const notes = document.getElementById('manualNotes').value.trim();
-        
-        // Validation
-        if (!customerName || !phone || !wilaya || !city || !product || !quantity || !total) {
-            this.showNotification(window.langManager.t('fillAllFields'));
-            return;
-        }
-        
-        const newOrder = {
-            id: String(this.orders.length + 1),
-            customerName,
-            phone,
-            wilaya,
-            city,
-            product,
-            variants: variants || 'Standard',
-            quantity,
-            total,
-            customerNotes: notes,
-            sellerNotes: '',
-            date: new Date().toISOString(),
-            status: 'new',
-            isRead: false
-        };
-        
-        this.orders.unshift(newOrder);
-        this.filteredOrders = [...this.orders];
-        this.saveOrders();
-        this.renderOrders();
-        this.updateStats();
-        this.toggleManualOrderForm();
-        
-        this.showNotification(window.langManager.t('orderAdded'));
-    }
-    
-    showDeleteConfirmation() {
-        const dialog = document.getElementById('confirmationDialog');
-        dialog.classList.add('show');
-    }
-    
-    hideDeleteConfirmation() {
-        const dialog = document.getElementById('confirmationDialog');
-        dialog.classList.remove('show');
-    }
-    
-    deleteCurrentOrder() {
-        if (!this.currentOrder) return;
-        
-        const orderIndex = this.orders.findIndex(o => o.id === this.currentOrder.id);
-        if (orderIndex !== -1) {
-            this.orders.splice(orderIndex, 1);
-            this.filteredOrders = [...this.orders];
-            this.saveOrders();
-            this.renderOrders();
-            this.updateStats();
-            this.closeModal();
-            this.hideDeleteConfirmation();
-            this.showNotification(window.langManager.t('orderDeleted'));
-        }
-    }
-    
-    sendWhatsAppStatusUpdate(order, newStatus) {
-        // Check if phone number is valid for WhatsApp
-        const phoneNumber = this.formatPhoneForWhatsApp(order.phone);
-        
-        if (!phoneNumber) {
-            this.showWhatsAppStatus('Numéro de téléphone invalide', true);
-            return;
-        }
-        
-        // Create status message
-        const statusMessages = {
-            new: window.langManager.currentLang === 'fr' ? 'Votre commande a été reçue et est en cours de traitement.' : 'Your order has been received and is being processed.',
-            processing: window.langManager.currentLang === 'fr' ? 'Votre commande est en cours de préparation.' : 'Your order is being prepared.',
-            shipped: window.langManager.currentLang === 'fr' ? 'Votre commande a été expédiée et est en route.' : 'Your order has been shipped and is on its way.',
-            completed: window.langManager.currentLang === 'fr' ? 'Votre commande a été livrée avec succès.' : 'Your order has been delivered successfully.',
-            cancelled: window.langManager.currentLang === 'fr' ? 'Votre commande a été annulée.' : 'Your order has been cancelled.',
-            return: window.langManager.currentLang === 'fr' ? 'Votre demande de retour a été enregistrée.' : 'Your return request has been recorded.',
-            exchange: window.langManager.currentLang === 'fr' ? 'Votre demande d\'échange a été enregistrée.' : 'Your exchange request has been recorded.'
-        };
-        
-        const message = `${window.langManager.t('whatsappGreeting')} ${order.customerName},\n\n` +
-                       `${window.langManager.t('whatsappOrderUpdate')} #${order.id}:\n` +
-                       `${statusMessages[newStatus]}\n\n` +
-                       `${window.langManager.t('whatsappProduct')} ${order.product}\n` +
-                       `${window.langManager.t('whatsappQuantity')} ${order.quantity}\n` +
-                       `${window.langManager.t('whatsappTotal')} €${order.total}\n\n` +
-                       `${window.langManager.t('whatsappThanks')}\n` +
-                       `${window.langManager.t('whatsappSignature')}`;
-        
-        // Create WhatsApp URL
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-        
-        // Open WhatsApp
-        window.open(whatsappUrl, '_blank');
+        // Update the table
+        updateOrdersTable();
+        updateStats();
         
         // Show success message
-        this.showWhatsAppStatus(window.langManager.t('whatsappSent'));
+        showSuccessMessage(whatsappNotify);
+        
+        // Simulate WhatsApp sending if enabled
+        if (whatsappNotify) {
+            simulateWhatsAppSending(orders[orderIndex]);
+        }
     }
     
-    formatPhoneForWhatsApp(phone) {
-        // Remove all non-digit characters
-        const cleaned = phone.replace(/\D/g, '');
-        
-        // Check if it's a valid phone number (at least 8 digits)
-        if (cleaned.length < 8) {
-            return null;
-        }
-        
-        // Add country code if missing (assuming France +33)
-        if (cleaned.startsWith('0')) {
-            return '33' + cleaned.substring(1);
-        } else if (cleaned.startsWith('33')) {
-            return cleaned;
-        } else if (cleaned.length >= 9) {
-            return cleaned;
-        }
-        
-        return null;
+    closeStatusChangeModal();
+}
+
+function showSuccessMessage(withWhatsApp) {
+    const successElement = document.getElementById('statusChangeSuccess');
+    const messageElement = document.getElementById('successMessage');
+    
+    if (withWhatsApp) {
+        messageElement.textContent = translations[currentLanguage].statusUpdatedWithWhatsApp;
+    } else {
+        messageElement.textContent = translations[currentLanguage].statusUpdatedWithoutWhatsApp;
     }
     
-    showWhatsAppStatus(message, isError = false) {
-        const statusDiv = document.getElementById('whatsappStatus');
-        const messageSpan = document.getElementById('whatsappMessage');
+    successElement.classList.add('show');
+    
+    setTimeout(() => {
+        successElement.classList.remove('show');
+    }, 4000);
+}
+
+function simulateWhatsAppSending(order) {
+    // Simulate WhatsApp API call
+    console.log(`Sending WhatsApp to ${order.phone}: Your order #${order.id} status has been updated to ${getStatusText(order.status)}`);
+    
+    // You can integrate with actual WhatsApp API here
+    // Example: WhatsApp Business API, Twilio, etc.
+}
+
+function getStatusText(status) {
+    const statusTexts = {
+        new: translations[currentLanguage].new,
+        processing: translations[currentLanguage].processing,
+        shipped: translations[currentLanguage].shipped,
+        completed: translations[currentLanguage].completed,
+        cancelled: translations[currentLanguage].cancelled,
+        return: translations[currentLanguage].statusReturn,
+        exchange: translations[currentLanguage].statusExchange
+    };
+    return statusTexts[status] || status;
+}
+
+// Language functions
+function toggleLanguage() {
+    currentLanguage = currentLanguage === 'fr' ? 'en' : 'fr';
+    document.getElementById('langText').textContent = currentLanguage === 'fr' ? 'Français' : 'English';
+    updateLanguage();
+}
+
+function updateLanguage() {
+    document.querySelectorAll('[data-key]').forEach(element => {
+        const key = element.getAttribute('data-key');
+        if (translations[currentLanguage][key]) {
+            element.textContent = translations[currentLanguage][key];
+        }
+    });
+    
+    document.querySelectorAll('[data-key-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-key-placeholder');
+        if (translations[currentLanguage][key]) {
+            element.placeholder = translations[currentLanguage][key];
+        }
+    });
+}
+
+// Menu functions
+function toggleMenu() {
+    const dropdown = document.getElementById('dropdownMenu');
+    dropdown.classList.toggle('show');
+}
+
+// Search and filter functions
+function handleSearch() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    applyFilters();
+}
+
+function handleFilter() {
+    applyFilters();
+}
+
+function applyFilters() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    const statusFilter = document.getElementById('statusFilter').value;
+    const dateFrom = document.getElementById('dateFrom').value;
+    const dateTo = document.getElementById('dateTo').value;
+    
+    filteredOrders = orders.filter(order => {
+        const matchesSearch = !searchTerm || 
+            order.customerName.toLowerCase().includes(searchTerm) ||
+            order.phone.toLowerCase().includes(searchTerm) ||
+            order.wilaya.toLowerCase().includes(searchTerm) ||
+            order.product.toLowerCase().includes(searchTerm);
         
-        messageSpan.textContent = message;
-        statusDiv.classList.toggle('error', isError);
-        statusDiv.classList.add('show');
+        const matchesStatus = !statusFilter || order.status === statusFilter;
         
-        // Hide after 5 seconds
+        const matchesDate = (!dateFrom || order.date >= dateFrom) && 
+                           (!dateTo || order.date <= dateTo);
+        
+        return matchesSearch && matchesStatus && matchesDate;
+    });
+    
+    updateOrdersTable();
+}
+
+// Table functions
+function updateOrdersTable() {
+    const tbody = document.getElementById('ordersTableBody');
+    tbody.innerHTML = '';
+    
+    filteredOrders.forEach(order => {
+        const row = createOrderRow(order);
+        tbody.appendChild(row);
+    });
+}
+
+function createOrderRow(order) {
+    const row = document.createElement('tr');
+    if (order.unread) {
+        row.classList.add('unread');
+    }
+    
+    row.innerHTML = `
+        <td class="col-id">${order.id}</td>
+        <td class="col-nom">${order.customerName}</td>
+        <td class="col-phone">${order.phone}</td>
+        <td class="col-wilaya">${order.wilaya}</td>
+        <td class="col-produit">
+            <span class="truncate" title="${order.product}">${order.product}</span>
+        </td>
+        <td class="col-variants">
+            <span class="truncate" title="${order.variants}">${order.variants}</span>
+        </td>
+        <td class="col-quantity">${order.quantity}</td>
+        <td class="col-total">€${order.total.toFixed(2)}</td>
+        <td class="col-date">${formatDate(order.date)}</td>
+        <td class="col-statut">
+            <div class="status-dropdown">
+                <div class="status-display ${order.status}" onclick="openStatusChangeModal(${order.id}, '${order.status}')">
+                    ${getStatusText(order.status)}
+                </div>
+            </div>
+        </td>
+        <td class="col-action">
+            <button class="action-btn" onclick="openOrderModal(${order.id})" title="Voir détails">
+                <i class="fas fa-eye"></i>
+            </button>
+        </td>
+    `;
+    
+    return row;
+}
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('fr-FR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    });
+}
+
+// Stats functions
+function updateStats() {
+    const stats = {
+        new: orders.filter(o => o.status === 'new').length,
+        processing: orders.filter(o => o.status === 'processing').length,
+        shipped: orders.filter(o => o.status === 'shipped').length,
+        completed: orders.filter(o => o.status === 'completed').length
+    };
+    
+    document.getElementById('newOrdersCount').textContent = stats.new;
+    document.getElementById('processingOrdersCount').textContent = stats.processing;
+    document.getElementById('shippedOrdersCount').textContent = stats.shipped;
+    document.getElementById('completedOrdersCount').textContent = stats.completed;
+}
+
+// Order management functions
+function addTestOrder() {
+    const newOrder = {
+        id: orders.length + 1,
+        customerName: "Client Test",
+        phone: "+213 555 000 000",
+        wilaya: "Alger",
+        city: "Centre",
+        product: "Produit Test",
+        variants: "Test",
+        quantity: 1,
+        total: 50.00,
+        date: new Date().toISOString().split('T')[0],
+        status: "new",
+        notes: "Commande de test",
+        unread: true
+    };
+    
+    orders.unshift(newOrder);
+    applyFilters();
+    updateStats();
+}
+
+function toggleManualOrderForm() {
+    const form = document.getElementById('manualOrderForm');
+    form.classList.toggle('show');
+}
+
+function hideManualOrderForm() {
+    document.getElementById('manualOrderForm').classList.remove('show');
+    clearManualOrderForm();
+}
+
+function clearManualOrderForm() {
+    document.getElementById('manualCustomerName').value = '';
+    document.getElementById('manualPhone').value = '';
+    document.getElementById('manualWilaya').value = '';
+    document.getElementById('manualCity').value = '';
+    document.getElementById('manualProduct').value = '';
+    document.getElementById('manualVariants').value = '';
+    document.getElementById('manualQuantity').value = '1';
+    document.getElementById('manualTotal').value = '';
+    document.getElementById('manualNotes').value = '';
+}
+
+function saveManualOrder() {
+    const newOrder = {
+        id: orders.length + 1,
+        customerName: document.getElementById('manualCustomerName').value,
+        phone: document.getElementById('manualPhone').value,
+        wilaya: document.getElementById('manualWilaya').value,
+        city: document.getElementById('manualCity').value,
+        product: document.getElementById('manualProduct').value,
+        variants: document.getElementById('manualVariants').value,
+        quantity: parseInt(document.getElementById('manualQuantity').value),
+        total: parseFloat(document.getElementById('manualTotal').value),
+        date: new Date().toISOString().split('T')[0],
+        status: "new",
+        notes: document.getElementById('manualNotes').value,
+        unread: true
+    };
+    
+    orders.unshift(newOrder);
+    hideManualOrderForm();
+    applyFilters();
+    updateStats();
+}
+
+// Modal functions
+function openOrderModal(orderId) {
+    const order = orders.find(o => o.id === orderId);
+    if (!order) return;
+    
+    // Mark as read
+    order.unread = false;
+    updateOrdersTable();
+    updateStats();
+    
+    // Populate modal with order data
+    document.getElementById('produitValue').textContent = order.product;
+    document.getElementById('couleurValue').textContent = order.variants;
+    document.getElementById('quantiteValue').textContent = order.quantity;
+    document.getElementById('nomValue').textContent = order.customerName;
+    document.getElementById('telephoneValue').textContent = order.phone;
+    document.getElementById('wilayaValue').textContent = order.wilaya;
+    document.getElementById('communeValue').textContent = order.city;
+    document.getElementById('prixProduitValue').textContent = `€${order.total.toFixed(2)}`;
+    document.getElementById('fraisLivraisonValue').textContent = "€0.00";
+    document.getElementById('totalValue').textContent = `€${order.total.toFixed(2)}`;
+    
+    // Show modal
+    document.getElementById('modalOverlay').classList.add('show');
+    document.body.style.overflow = 'hidden';
+    
+    // Store current order for actions
+    window.currentModalOrder = order;
+}
+
+function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('show');
+    document.body.style.overflow = '';
+    hideNotes();
+}
+
+// Export function
+function exportOrders() {
+    const csvContent = "data:text/csv;charset=utf-8," + 
+        "ID,Nom,Téléphone,Wilaya,Produit,Variantes,Quantité,Total,Date,Statut\n" +
+        filteredOrders.map(order => 
+            `${order.id},"${order.customerName}","${order.phone}","${order.wilaya}","${order.product}","${order.variants}",${order.quantity},${order.total},"${order.date}","${getStatusText(order.status)}"`
+        ).join("\n");
+    
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "commandes.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// Print and save functions
+function printInvoice() {
+    window.print();
+}
+
+function saveInvoice() {
+    // Implementation for saving invoice as PDF
+    console.log('Saving invoice...');
+}
+
+// Delete functions
+function showDeleteConfirmation() {
+    document.getElementById('confirmationDialog').classList.add('show');
+}
+
+function hideDeleteConfirmation() {
+    document.getElementById('confirmationDialog').classList.remove('show');
+}
+
+function deleteOrder() {
+    if (window.currentModalOrder) {
+        const orderIndex = orders.findIndex(o => o.id === window.currentModalOrder.id);
+        if (orderIndex !== -1) {
+            orders.splice(orderIndex, 1);
+            updateOrdersTable();
+            updateStats();
+            closeModal();
+            hideDeleteConfirmation();
+        }
+    }
+}
+
+// Call function
+function callCustomer() {
+    if (window.currentModalOrder) {
+        window.open(`tel:${window.currentModalOrder.phone}`);
+    }
+}
+
+// Notes functions
+function toggleNotes() {
+    const notesSection = document.getElementById('notesSection');
+    notesSection.classList.toggle('show');
+}
+
+function hideNotes() {
+    document.getElementById('notesSection').classList.remove('show');
+}
+
+function addQuickNote(note) {
+    const textarea = document.getElementById('notesTextarea');
+    const currentNotes = textarea.value;
+    const timestamp = new Date().toLocaleString('fr-FR');
+    const newNote = `[${timestamp}] ${note}`;
+    
+    textarea.value = currentNotes ? `${currentNotes}\n${newNote}` : newNote;
+    
+    // Save to order
+    if (window.currentModalOrder) {
+        window.currentModalOrder.notes = textarea.value;
+    }
+}
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.user-menu')) {
+        document.getElementById('dropdownMenu').classList.remove('show');
+    }
+});
+
+// Scroll hint for mobile
+function showScrollHint() {
+    const hint = document.getElementById('scrollHint');
+    if (window.innerWidth <= 767) {
+        hint.classList.add('show');
         setTimeout(() => {
-            statusDiv.classList.remove('show');
-        }, 5000);
-    }
-    
-    exportOrders() {
-        const csvContent = this.generateCSV();
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        const link = document.createElement('a');
-        
-        if (link.download !== undefined) {
-            const url = URL.createObjectURL(blob);
-            link.setAttribute('href', url);
-            link.setAttribute('download', `orders_${new Date().toISOString().split('T')[0]}.csv`);
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    }
-    
-    generateCSV() {
-        const headers = [
-            'N°', 'Customer Name', 'Phone', 'Wilaya', 'City', 'Product', 
-            'Variants', 'Quantity', 'Total', 'Date', 'Status', 'Customer Notes', 'Seller Notes'
-        ];
-        
-        const rows = this.filteredOrders.map(order => [
-            order.id,
-            order.customerName,
-            order.phone,
-            order.wilaya,
-            order.city,
-            order.product,
-            order.variants,
-            order.quantity,
-            order.total,
-            this.formatDate(order.date),
-            order.status,
-            order.customerNotes,
-            order.sellerNotes
-        ]);
-        
-        return [headers, ...rows].map(row => 
-            row.map(field => `"${String(field).replace(/"/g, '""')}"`).join(',')
-        ).join('\n');
-    }
-    
-    initModal() {
-        const modal = document.getElementById('modalOverlay');
-        const closeBtn = document.getElementById('modalClose');
-        
-        // Close modal events
-        closeBtn.addEventListener('click', () => this.closeModal());
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) this.closeModal();
-        });
-        
-        // Escape key to close
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.classList.contains('show')) {
-                this.closeModal();
-            }
-        });
-        
-        // Modal action buttons
-        document.getElementById('callBtn').addEventListener('click', () => {
-            this.callCustomer();
-        });
-        
-        document.getElementById('addNotesBtn').addEventListener('click', () => {
-            this.toggleNotesSection();
-        });
-        
-        // Print and Save buttons
-        document.getElementById('printBtn').addEventListener('click', () => {
-            this.printModal();
-        });
-        
-        document.getElementById('saveBtn').addEventListener('click', () => {
-            this.saveModalAsImage();
-        });
-        
-        // Quick notes buttons
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('quick-note-btn')) {
-                const note = e.target.getAttribute('data-note');
-                this.addQuickNote(note);
-            }
-        });
-        
-        // Auto-save seller notes
-        document.getElementById('notesTextarea').addEventListener('input', 
-            this.debounce(() => this.saveSellerNotes(), 1000)
-        );
-        
-        // Return/Exchange functionality
-        // Delete order functionality
-        document.getElementById('deleteOrderBtn').addEventListener('click', () => {
-            this.showDeleteConfirmation();
-        });
-        
-        document.getElementById('confirmDelete').addEventListener('click', () => {
-            this.deleteCurrentOrder();
-        });
-        
-        document.getElementById('cancelDelete').addEventListener('click', () => {
-            this.hideDeleteConfirmation();
-        });
-        
-        // Manual order form
-        document.getElementById('addManualOrderBtn').addEventListener('click', () => {
-            this.toggleManualOrderForm();
-        });
-        
-        document.getElementById('saveManualOrder').addEventListener('click', () => {
-            this.saveManualOrder();
-        });
-        
-        document.getElementById('cancelManualOrder').addEventListener('click', () => {
-            this.toggleManualOrderForm();
-        });
-    }
-    
-    openOrderModal(orderId) {
-        const order = this.orders.find(o => o.id === orderId);
-        if (!order) return;
-        
-        this.currentOrder = order;
-        
-        // Mark as read
-        if (!order.isRead) {
-            order.isRead = true;
-            this.saveOrders();
-            this.renderOrders();
-        }
-        
-        this.populateModal(order);
-        
-        const modal = document.getElementById('modalOverlay');
-        modal.classList.add('show');
-        document.body.style.overflow = 'hidden';
-    }
-    
-    closeModal() {
-        const modal = document.getElementById('modalOverlay');
-        modal.classList.remove('show');
-        document.body.style.overflow = '';
-        this.currentOrder = null;
-    }
-    
-    populateModal(order) {
-        // Update field values
-        document.getElementById('produitValue').textContent = order.product;
-        document.getElementById('couleurValue').textContent = order.variants;
-        document.getElementById('quantiteValue').textContent = order.quantity;
-        document.getElementById('nomValue').textContent = order.customerName;
-        document.getElementById('telephoneValue').textContent = order.phone;
-        document.getElementById('wilayaValue').textContent = order.wilaya;
-        document.getElementById('communeValue').textContent = order.city;
-        
-        // Calculate delivery fee (10% of product price)
-        const productPrice = order.total * 0.9; // Assuming 90% is product, 10% is delivery
-        const deliveryFee = order.total * 0.1;
-        
-        document.getElementById('prixProduitValue').textContent = `€${productPrice.toFixed(2)}`;
-        document.getElementById('fraisLivraisonValue').textContent = `€${deliveryFee.toFixed(2)}`;
-        document.getElementById('totalValue').textContent = `€${order.total.toFixed(2)}`;
-        
-        // Update notes
-        document.getElementById('notesTextarea').value = order.sellerNotes || '';
-    }
-    
-    callCustomer() {
-        if (!this.currentOrder) return;
-        
-        const phoneNumber = this.currentOrder.phone.replace(/\s/g, '');
-        window.open(`tel:${phoneNumber}`, '_self');
-    }
-    
-    toggleNotesSection() {
-        const notesSection = document.getElementById('notesSection');
-        notesSection.classList.toggle('show');
-    }
-    
-    addQuickNote(note) {
-        const textarea = document.getElementById('notesTextarea');
-        const currentNotes = textarea.value;
-        const newNotes = currentNotes ? `${currentNotes}\n${note}` : note;
-        
-        textarea.value = newNotes;
-        this.saveSellerNotes();
-        this.showNotification(window.langManager.t('noteAdded'));
-    }
-    
-    saveSellerNotes() {
-        if (!this.currentOrder) return;
-        
-        const notes = document.getElementById('notesTextarea').value;
-        this.currentOrder.sellerNotes = notes;
-        this.saveOrders();
-    }
-    
-    printModal() {
-        // Hide action buttons and header actions during print
-        const actionButtons = document.querySelector('.action-buttons');
-        const headerActions = document.querySelector('.modal-header-actions');
-        const originalActionDisplay = actionButtons.style.display;
-        const originalHeaderDisplay = headerActions.style.display;
-        
-        actionButtons.style.display = 'none';
-        headerActions.style.display = 'none';
-        
-        // Print
-        window.print();
-        
-        // Restore buttons after print
-        setTimeout(() => {
-            actionButtons.style.display = originalActionDisplay;
-            headerActions.style.display = originalHeaderDisplay;
-        }, 1000);
-    }
-    
-    async saveModalAsImage() {
-        try {
-            // Show loading state
-            const saveBtn = document.getElementById('saveBtn');
-            const originalContent = saveBtn.innerHTML;
-            saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-            saveBtn.disabled = true;
-            
-            // Import html2canvas dynamically
-            if (!window.html2canvas) {
-                const script = document.createElement('script');
-                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-                document.head.appendChild(script);
-                
-                await new Promise((resolve) => {
-                    script.onload = resolve;
-                });
-            }
-            
-            // Get the modal content
-            const modal = document.querySelector('.invoice-modal');
-            
-            // Hide action buttons temporarily
-            const actionButtons = document.querySelector('.action-buttons');
-            const headerActions = document.querySelector('.modal-header-actions');
-            const originalActionDisplay = actionButtons.style.display;
-            const originalHeaderDisplay = headerActions.style.display;
-            
-            actionButtons.style.display = 'none';
-            headerActions.style.display = 'none';
-            
-            // Capture the modal
-            const canvas = await html2canvas(modal, {
-                backgroundColor: '#ffffff',
-                scale: 2,
-                useCORS: true,
-                allowTaint: true,
-                logging: false,
-                width: modal.offsetWidth,
-                height: modal.offsetHeight
-            });
-            
-            // Restore buttons
-            actionButtons.style.display = originalActionDisplay;
-            headerActions.style.display = originalHeaderDisplay;
-            
-            // Create download link
-            const link = document.createElement('a');
-            link.download = `invoice-${this.currentOrder.id}-${new Date().toISOString().split('T')[0]}.png`;
-            link.href = canvas.toDataURL('image/png');
-            
-            // Trigger download
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            // Show success notification
-            this.showNotification('تم حفظ الفاتورة كصورة بنجاح!');
-            
-        } catch (error) {
-            console.error('Error saving modal as image:', error);
-            this.showNotification('حدث خطأ أثناء حفظ الصورة');
-        } finally {
-            // Restore button
-            const saveBtn = document.getElementById('saveBtn');
-            saveBtn.innerHTML = originalContent;
-            saveBtn.disabled = false;
-        }
-    }
-    
-    showNotification(message) {
-        // Create notification element
-        const notification = document.createElement('div');
-        notification.className = 'notification';
-        notification.textContent = message;
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--status-new);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-lg);
-            z-index: 3000;
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
-        `;
-        
-        document.body.appendChild(notification);
-        
-        // Animate in
-        setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 100);
-        
-        // Remove after 3 seconds
-        setTimeout(() => {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 300);
+            hint.classList.remove('show');
         }, 3000);
     }
-    
-    debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
 }
 
-// Performance Optimization
-class PerformanceOptimizer {
-    constructor() {
-        this.init();
-    }
-    
-    init() {
-        this.lazyLoadImages();
-        this.optimizeScrolling();
-        this.preloadCriticalResources();
-    }
-    
-    lazyLoadImages() {
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        img.classList.remove('lazy');
-                        observer.unobserve(img);
-                    }
-                });
-            });
-            
-            document.querySelectorAll('img[data-src]').forEach(img => {
-                imageObserver.observe(img);
-            });
-        }
-    }
-    
-    optimizeScrolling() {
-        let ticking = false;
-        
-        function updateScrollPosition() {
-            // Add scroll-based optimizations here
-            ticking = false;
-        }
-        
-        function requestTick() {
-            if (!ticking) {
-                requestAnimationFrame(updateScrollPosition);
-                ticking = true;
-            }
-        }
-        
-        window.addEventListener('scroll', requestTick, { passive: true });
-    }
-    
-    preloadCriticalResources() {
-        // Preload critical CSS and fonts
-        const criticalResources = [
-            'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
-        ];
-        
-        criticalResources.forEach(resource => {
-            const link = document.createElement('link');
-            link.rel = 'preload';
-            link.href = resource;
-            link.as = 'style';
-            document.head.appendChild(link);
-        });
-    }
-}
-
-// Accessibility Manager
-class AccessibilityManager {
-    constructor() {
-        this.init();
-    }
-    
-    init() {
-        this.setupKeyboardNavigation();
-        this.setupScreenReaderSupport();
-        this.setupFocusManagement();
-    }
-    
-    setupKeyboardNavigation() {
-        // Add keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            // Ctrl/Cmd + K for search
-            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-                e.preventDefault();
-                document.getElementById('searchInput').focus();
-            }
-            
-            // Escape to close modals
-            if (e.key === 'Escape') {
-                const modal = document.getElementById('modalOverlay');
-                if (modal.classList.contains('show')) {
-                    window.ordersManager.closeModal();
-                }
-            }
-        });
-    }
-    
-    setupScreenReaderSupport() {
-        // Add ARIA labels and descriptions
-        document.querySelectorAll('button, input, select').forEach(element => {
-            if (!element.getAttribute('aria-label') && !element.getAttribute('aria-labelledby')) {
-                const text = element.textContent || element.placeholder || element.value;
-                if (text) {
-                    element.setAttribute('aria-label', text);
-                }
-            }
-        });
-    }
-    
-    setupFocusManagement() {
-        // Trap focus in modals
-        const modal = document.getElementById('modalOverlay');
-        const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-        
-        modal.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                const focusableContent = modal.querySelectorAll(focusableElements);
-                const firstFocusableElement = focusableContent[0];
-                const lastFocusableElement = focusableContent[focusableContent.length - 1];
-                
-                if (e.shiftKey) {
-                    if (document.activeElement === firstFocusableElement) {
-                        lastFocusableElement.focus();
-                        e.preventDefault();
-                    }
-                } else {
-                    if (document.activeElement === lastFocusableElement) {
-                        firstFocusableElement.focus();
-                        e.preventDefault();
-                    }
-                }
-            }
-        });
-    }
-}
-
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize managers
-    window.langManager = new LanguageManager();
-    window.ordersManager = new OrdersManager();
-    window.performanceOptimizer = new PerformanceOptimizer();
-    window.accessibilityManager = new AccessibilityManager();
-    
-    // Add loading states
-    document.body.classList.add('loaded');
-    
-    // Initialize table headers translation
-    window.langManager.updateTableHeaders();
-    
-    // Show scroll hint on mobile
-    const scrollHint = document.getElementById('scrollHint');
-    if (scrollHint && window.innerWidth <= 768) {
-        scrollHint.classList.add('show');
-        
-        // Hide after 4 seconds or on scroll
-        const hideHint = () => {
-            scrollHint.classList.remove('show');
-        };
-        
-        setTimeout(hideHint, 4000);
-        
-        const tableContainer = document.querySelector('.table-container');
-        tableContainer.addEventListener('scroll', hideHint, { once: true });
-    }
-    
-    // Service Worker registration for PWA capabilities
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js').catch(err => {
-            console.log('Service Worker registration failed:', err);
-        });
-    }
+// Show scroll hint on page load for mobile
+window.addEventListener('load', () => {
+    setTimeout(showScrollHint, 1000);
 });
 
-// Error handling
-window.addEventListener('error', (e) => {
-    console.error('Application error:', e.error);
-    // You could send this to an error reporting service
+// Hide scroll hint when user scrolls
+document.querySelector('.table-container').addEventListener('scroll', () => {
+    document.getElementById('scrollHint').classList.remove('show');
 });
-
-window.addEventListener('unhandledrejection', (e) => {
-    console.error('Unhandled promise rejection:', e.reason);
-    // You could send this to an error reporting service
-});
-
-// Export for testing
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        LanguageManager,
-        OrdersManager,
-        PerformanceOptimizer,
-        AccessibilityManager
-    };
-}
